@@ -16,16 +16,16 @@ PFont font;
 
 //String input;
 
-//String ipAddress = "128.122.151.161";
+//String ipAddress = "128.122.151.161"; //pong server IP
 //int port = 8080;
 
 boolean drawUp, drawDown, drawLeft, drawRight, hasConnected, hasDisconnected, isConnected, drawConnect, drawDisconnect; //booleans to draw text to the video screen
 
 void setup () {
   smooth();	
-  //size(screenWidth, screenHeight);
-  size(400,400); //for testing locally
-  orientation(PORTRAIT);	
+  size(screenWidth, screenHeight);
+  //size(400,400); //for testing locally
+  //orientation(PORTRAIT); // makes it possible to lock orientation	
   drawUp = false; //booleans that trigger if image is drawn to the screen	
   drawDown = false;
   drawLeft = false;
@@ -166,7 +166,7 @@ void keyPressed() {
       drawDisconnect = false;		
       println("u"); 
       //println("drawConnect ="+" "+ drawConnect );
-      //c.write("uuu" + "\n"); //to send to server
+      c.write("uuu" + "\n"); //to send to server
     } 
     else if (keyCode == DOWN) {
       // user triggered 'down' on the d-pad
@@ -177,7 +177,7 @@ void keyPressed() {
       drawConnect = false;
       drawDisconnect = false;
       println("d"); 
-      //c.write("ddd" + "\n"); //to send to server
+      c.write("ddd" + "\n"); //to send to server
     } 
     else if (keyCode == LEFT) {
       // user triggered 'left' on the d-pad
@@ -188,7 +188,7 @@ void keyPressed() {
       drawConnect = false;
       drawDisconnect = false;
       println("l"); 
-      //c.write("l" + "\n"); //to send to server
+      c.write("l" + "\n"); //to send to server
     } 
     else if (keyCode == RIGHT) {
       // user triggered 'right' on the d-pad
@@ -199,22 +199,22 @@ void keyPressed() {
       drawConnect = false;
       drawDisconnect = false;
       println ("r");
-      //c.write("r" + "\n"); //to send to server
+      c.write("r" + "\n"); //to send to server
     }
   }
 
   if (key == 'c') { //connect socket
     println("Connect");	
     // Connect to the server's IP address and port
-    c = new Client(this, "192.168.7.180", 80); // Replace with your server's IP and port
-    c.write("ping 192.168.7.180 -c 1");
-                     if (c.available() > 0) {
-    	   String input = c.readString();
-    	    input = input.substring(0, input.indexOf("\n")); // Only up to the newline
-    	    data = int(split(input, ' ')); // Split values into an array
-            print (data);
-               
-              }
+    c = new Client(this, "128.122.151.161", 8080); // Replace with your server's IP and port
+//    c.write("ping 192.168.7.180 -c 1");
+//                     if (c.available() > 0) {
+//    	   String input = c.readString();
+//    	    input = input.substring(0, input.indexOf("\n")); // Only up to the newline
+//    	    data = int(split(input, ' ')); // Split values into an array
+//            print (data);
+//               
+//              }
    
     hasConnected = true;
     isConnected = true;
